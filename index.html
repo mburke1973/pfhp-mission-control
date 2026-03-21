@@ -529,7 +529,7 @@ function handleClick(b) {
   } else { sendCommand(b); }
 }
 
-function confirmSend() { closeModal(); if (pendingBoard) sendCommand(pendingBoard); }
+function confirmSend() { var board = pendingBoard; closeModal(); if (board) sendCommand(board); }
 function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); pendingBoard = null; }
 
 async function sendCommand(b) {
