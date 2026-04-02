@@ -98,6 +98,7 @@
     letter-spacing: 0.12em; text-transform: uppercase;
     cursor: pointer; transition: background 0.15s, transform 0.1s;
     white-space: nowrap;
+    text-decoration: none; display: inline-flex; align-items: center;
   }
   .cmd-btn:hover { background: var(--gold); transform: translateY(-1px); }
 
@@ -210,14 +211,13 @@
     box-shadow: 0 8px 32px rgba(100,60,200,0.25);
   }
   .board-card:active { transform: translateY(-1px); }
-  .board-card.firing { border-color: var(--gold); animation: fire-flash 0.6s ease; }
+  .board-card.launching { border-color: var(--gold); animation: fire-flash 0.6s ease; }
   @keyframes fire-flash {
     0% { box-shadow: 0 0 0 0 rgba(240,180,41,0.5); }
     50% { box-shadow: 0 0 0 12px rgba(240,180,41,0); }
     100% { box-shadow: none; }
   }
   .board-card.sent { border-color: rgba(52,211,153,0.5); }
-  .board-card.error-state { border-color: rgba(248,113,113,0.5); }
 
   .board-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
   .board-icon-wrap {
@@ -252,22 +252,6 @@
   .config-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
   .config-row:last-child { margin-bottom: 0; }
   .config-label { font-size: 11px; color: var(--text-secondary); letter-spacing: 0.08em; text-transform: uppercase; min-width: 90px; }
-  .config-input {
-    flex: 1; min-width: 200px;
-    font-family: 'Courier New', monospace; font-size: 12px;
-    background: rgba(0,0,0,0.3); border: 1px solid var(--border);
-    color: var(--text-primary); padding: 8px 12px; border-radius: 7px;
-    outline: none; transition: border-color 0.15s;
-  }
-  .config-input:focus { border-color: var(--purple-bright); }
-  .config-input::placeholder { color: var(--text-muted); }
-  .config-save {
-    background: var(--purple-mid); color: #fff;
-    border: none; border-radius: 7px; padding: 8px 18px;
-    font-size: 12px; font-weight: 500; cursor: pointer;
-    transition: background 0.15s; white-space: nowrap;
-  }
-  .config-save:hover { background: var(--purple-bright); }
   .toggle { position: relative; display: inline-block; width: 38px; height: 20px; }
   .toggle input { opacity: 0; width: 0; height: 0; }
   .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 20px; cursor: pointer; transition: background 0.2s; }
@@ -288,12 +272,6 @@
   .log-entry.warn { color: #fcd34d; }
   .log-time { color: #3d3060; margin-right: 8px; }
 
-  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #34d399; flex-shrink: 0; animation: blink 2s ease-in-out infinite; display: inline-block; margin-right: 6px; vertical-align: middle; }
-  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
-  .status-dot.offline { background: #f87171; animation: none; }
-  .status-text { font-size: 11px; color: #6ee7b7; }
-  .status-text.offline { color: #f87171; }
-
   .verse-strip { border-top: 1px solid var(--border); padding-top: 20px; text-align: center; }
   .verse-text { font-style: italic; font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
   .verse-ref { font-size: 10px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
@@ -313,16 +291,16 @@
   .modal-icon { font-size: 30px; margin-bottom: 12px; }
   .modal-title { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
   .modal-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; font-style: italic; }
-  .modal-command { font-family: 'Courier New', monospace; font-size: 14px; color: var(--purple-bright); background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 7px; padding: 10px 14px; margin-bottom: 20px; }
+  .modal-command { font-family: 'Courier New', monospace; font-size: 13px; color: var(--purple-bright); background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 7px; padding: 10px 14px; margin-bottom: 20px; word-break: break-all; }
   .modal-actions { display: flex; gap: 10px; }
-  .modal-confirm { flex: 1; background: var(--gold-btn); color: #1a1030; border: none; border-radius: 8px; padding: 11px; font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.15s; }
-  .modal-confirm:hover { background: var(--gold); }
-  .modal-cancel { background: none; color: var(--text-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 11px 16px; font-size: 12px; cursor: pointer; transition: border-color 0.15s; }
-  .modal-cancel:hover { border-color: var(--border-bright); }
+  .modal-confirm { flex: 1; background: var(--purple-mid); color: #fff; border: none; border-radius: 8px; padding: 11px; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+  .modal-confirm:hover { background: var(--purple-bright); }
+  .modal-cancel { background: rgba(255,255,255,0.06); color: var(--text-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 11px 18px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
+  .modal-cancel:hover { background: rgba(255,255,255,0.1); }
 
-  @media (max-width: 1100px) { .boards-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 800px) { .boards-grid { grid-template-columns: repeat(2, 1fr); } .stat-strip { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 600px) { nav { display: none; } main { margin-left: 0; padding: 16px; } .boards-grid { grid-template-columns: 1fr 1fr; } .stat-strip { grid-template-columns: 1fr 1fr; } .header-clock { display: none; } }
+  .channel-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:14px 20px; display:flex; align-items:center; gap:12px; }
+  .channel-badge-on { font-size:10px; background:var(--badge-building-bg); color:var(--badge-building-text); padding:3px 10px; border-radius:20px; margin-left:8px; }
+  .channel-badge-off { font-size:10px; background:var(--badge-planned-bg); color:var(--badge-planned-text); padding:3px 10px; border-radius:20px; margin-left:8px; }
 </style>
 </head>
 <body>
@@ -333,135 +311,146 @@
   </div>
   <div class="header-main">
     <div class="header-org">Passionate for His Purpose</div>
-    <div class="header-sub">Personal AI Agent &mdash; Mission Control</div>
+    <div class="header-sub">Claude AI Workspace Launcher &mdash; Mission Control</div>
   </div>
   <div class="header-right">
     <div class="header-clock">
       <div class="clock-time" id="clock-time">--:--:-- --</div>
       <div class="clock-date" id="clock-date">Loading...</div>
     </div>
-    <button class="cmd-btn" onclick="toggleConfig()">&#9881; Command Center</button>
+    <a class="cmd-btn" href="https://claude.ai/new" target="_blank">&#10024; New Claude Chat</a>
+    <button class="cmd-btn" onclick="toggleConfig()" style="background:var(--purple-mid); color:#fff; margin-left:4px;">&#9881; Settings</button>
   </div>
 </header>
 
 <div class="app-body">
   <nav>
-    <button class="nav-btn active" title="Mission Control">&#9889;</button>
-    <button class="nav-btn" title="Ministry Board">&#10013;</button>
+    <button class="nav-btn active" title="Mission Control" onclick="window.open('https://claude.ai','_blank')">&#9889;</button>
+    <button class="nav-btn" title="New Chat" onclick="window.open('https://claude.ai/new','_blank')">&#10013;</button>
     <div class="nav-divider"></div>
-    <button class="nav-btn" onclick="triggerSkill('emailsequence')" title="Email Sequences">&#9993;</button>
-    <button class="nav-btn" onclick="triggerSkill('course')" title="Course Creator">&#127891;</button>
-    <button class="nav-btn" onclick="triggerSkill('vsl')" title="VSL Generation">&#127909;</button>
-    <button class="nav-btn" onclick="triggerSkill('salespage')" title="Legacy Launcher">&#128640;</button>
-    <button class="nav-btn" onclick="triggerSkill('bookformat')" title="Book Formatter">&#128214;</button>
-    <button class="nav-btn" onclick="triggerSkill('podcast')" title="Podcast">&#127908;</button>
-    <button class="nav-btn" onclick="triggerSkill('coupon')" title="Stripe Expert">&#128179;</button>
-    <button class="nav-btn" onclick="triggerSkill('product')" title="Product Creator">&#128295;</button>
-    <button class="nav-btn" onclick="triggerSkill('blogpost')" title="Blog Poster">&#128221;</button>
-    <button class="nav-btn" onclick="triggerSkill('audioscribe')" title="Audio Transcription">&#127911;</button>
+    <button class="nav-btn" title="Email Sequences" onclick="openByName('email')">&#9993;</button>
+    <button class="nav-btn" title="Course Creator" onclick="openByName('course')">&#127891;</button>
+    <button class="nav-btn" title="VSL Generation" onclick="openByName('vsl')">&#127909;</button>
+    <button class="nav-btn" title="Legacy Launcher" onclick="openByName('legacy')">&#128640;</button>
+    <button class="nav-btn" title="Book Editor" onclick="openByName('book')">&#128214;</button>
+    <button class="nav-btn" title="Podcast" onclick="openByName('podcast')">&#127908;</button>
+    <button class="nav-btn" title="Stripe Expert" onclick="openByName('stripe')">&#128179;</button>
+    <button class="nav-btn" title="Product Creator" onclick="openByName('prodcr')">&#128295;</button>
+    <button class="nav-btn" title="Blog Poster" onclick="openByName('blog')">&#128221;</button>
+    <button class="nav-btn" title="Help Desk" onclick="openByName('helpdesk')">&#127911;</button>
     <div class="nav-divider"></div>
-    <button class="nav-btn" title="Channels">&#128225;</button>
-    <button class="nav-btn" title="Cron Jobs">&#9201;</button>
-    <button class="nav-btn" title="Sessions">&#128193;</button>
+    <button class="nav-btn" title="Claude.ai" onclick="window.open('https://claude.ai','_blank')">&#128225;</button>
     <button class="nav-btn" title="Settings" onclick="toggleConfig()">&#9881;</button>
   </nav>
 
   <main>
+
+    <!-- Active Project Banner -->
     <div class="task-banner">
-      <div class="task-icon-wrap">&#128139;</div>
+      <div class="task-icon-wrap">&#127754;</div>
       <div class="task-info">
-        <div class="task-eyebrow">Next Scheduled Task</div>
-        <div class="task-name">Ministry Email Watch</div>
-        <div class="task-desc">Monitoring inbox for ministry inquiries</div>
+        <div class="task-eyebrow">Active Project</div>
+        <div class="task-name">DeepWaters &mdash; Pre-Beta</div>
+        <div class="task-desc">Landing page updated &bull; Public roadmap in progress &bull; 13 items remaining before launch</div>
       </div>
       <div class="task-timer-block">
-        <div class="task-runs-in">Runs In</div>
-        <div class="task-countdown" id="countdown">--:--</div>
+        <div class="task-runs-in">Pre-Beta Items</div>
+        <div class="task-countdown" id="countdown">13</div>
       </div>
     </div>
 
+    <!-- Stats -->
     <div class="stat-strip">
       <div class="stat-card">
         <div class="stat-icon-wrap">&#129504;</div>
-        <div><div class="stat-value">2</div><div class="stat-label">AI Models</div></div>
+        <div><div class="stat-value">1</div><div class="stat-label">Claude Model</div></div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon-wrap">&#128279;</div>
-        <div><div class="stat-value">3</div><div class="stat-label">Integrations</div></div>
+        <div class="stat-icon-wrap">&#128218;</div>
+        <div><div class="stat-value">13</div><div class="stat-label">Workspaces</div></div>
       </div>
       <div class="stat-card">
         <div class="stat-icon-wrap">&#9881;</div>
-        <div><div class="stat-value">4</div><div class="stat-label">Cron Jobs</div></div>
+        <div><div class="stat-value">4</div><div class="stat-label">Claude Tools</div></div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon-wrap">&#128225;</div>
-        <div><div class="stat-value">2</div><div class="stat-label">Channels</div></div>
+        <div class="stat-icon-wrap">&#127754;</div>
+        <div><div class="stat-value">1.0.6</div><div class="stat-label">DeepWaters</div></div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon-wrap">&#8734;</div>
-        <div><div class="stat-value">365D</div><div class="stat-label">Session Life</div></div>
+        <div class="stat-icon-wrap">&#11088;</div>
+        <div><div class="stat-value">Pro</div><div class="stat-label">Plan Active</div></div>
       </div>
     </div>
 
+    <!-- Settings Panel -->
     <div id="config-section" style="display:none;">
-      <div class="section-label">Gateway Configuration</div>
+      <div class="section-label">Settings</div>
       <div class="config-panel">
         <div class="config-row">
-          <div class="config-label">Bot Token</div>
-          <input class="config-input" type="password" id="bot-token" placeholder="Telegram bot token" />
-          <button class="config-save" onclick="saveConfig()">Save &amp; Test</button>
-        </div>
-        <div class="config-row">
-          <div class="config-label">Chat ID</div>
-          <input class="config-input" type="text" id="chat-id" placeholder="Your Telegram user ID" />
-        </div>
-        <div class="config-row" style="margin-bottom:0;">
           <div class="config-label">Confirm</div>
           <label class="toggle">
             <input type="checkbox" id="confirm-toggle" checked />
             <span class="toggle-slider"></span>
           </label>
-          <span style="font-size:12px; color:var(--text-secondary);">Show confirmation before sending each command</span>
+          <span style="font-size:12px; color:var(--text-secondary);">Show confirmation before opening each workspace in Claude</span>
         </div>
-        <div style="font-size:11px; color:var(--text-muted); font-style:italic; margin-top:14px;">
-          <span class="status-dot" id="status-dot"></span>
-          <span class="status-text" id="status-text">Checking gateway...</span>
-          &nbsp;&nbsp;Credentials stored in localStorage only, never shared.
+        <div style="font-size:11px; color:var(--text-muted); font-style:italic; margin-top:8px;">
+          To update a workspace URL, edit the BOARDS array in the page source and redeploy to Vercel via GitHub.
         </div>
       </div>
     </div>
 
-    <div class="section-label">Ministry Boards</div>
+    <!-- Boards Grid -->
+    <div class="section-label">Claude Workspaces</div>
     <div class="boards-grid" id="boards-grid"></div>
 
+    <!-- Activity Log -->
     <div class="section-label">Activity Log</div>
     <div class="log-panel">
       <div class="log-header">
-        <div class="log-title">Command History</div>
+        <div class="log-title">Launch History</div>
         <button class="log-clear" onclick="clearLog()">Clear</button>
       </div>
       <div class="log-body" id="log-body">
-        <div class="log-entry info"><span class="log-time">--:--:--</span>Mission Control ready. Click any board to fire a command to OpenClaw.</div>
+        <div class="log-entry info"><span class="log-time">--:--:--</span>Mission Control ready. Click any workspace to open Claude.</div>
       </div>
     </div>
 
+    <!-- Connected Channels -->
     <div class="section-label">Connected Channels</div>
     <div style="display:flex; gap:14px; margin-bottom:32px; flex-wrap:wrap;">
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:14px 20px; display:flex; align-items:center; gap:12px;">
-        <span style="font-size:20px;">&#9992;</span>
+      <div class="channel-card">
+        <span style="font-size:20px;">&#129302;</span>
         <div>
-          <div style="font-size:12px; font-weight:500;">Telegram</div>
-          <div style="font-size:11px; color:var(--text-muted);">Bot API - Direct messaging active</div>
+          <div style="font-size:12px; font-weight:500;">Claude.ai</div>
+          <div style="font-size:11px; color:var(--text-muted);">Chat, Projects, Artifacts &mdash; Pro Plan</div>
         </div>
-        <span style="font-size:10px; background:var(--badge-building-bg); color:var(--badge-building-text); padding:3px 10px; border-radius:20px; margin-left:8px;">Connected</span>
+        <span class="channel-badge-on">Active</span>
       </div>
-      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:14px 20px; display:flex; align-items:center; gap:12px;">
+      <div class="channel-card">
+        <span style="font-size:20px;">&#128295;</span>
+        <div>
+          <div style="font-size:12px; font-weight:500;">Cowork</div>
+          <div style="font-size:11px; color:var(--text-muted);">Background task automation &mdash; Pro included</div>
+        </div>
+        <span class="channel-badge-on">Active</span>
+      </div>
+      <div class="channel-card">
+        <span style="font-size:20px;">&#128187;</span>
+        <div>
+          <div style="font-size:12px; font-weight:500;">Claude Code</div>
+          <div style="font-size:11px; color:var(--text-muted);">Terminal-based coding agent &mdash; Pro included</div>
+        </div>
+        <span class="channel-badge-off">Available</span>
+      </div>
+      <div class="channel-card">
         <span style="font-size:20px;">&#127760;</span>
         <div>
-          <div style="font-size:12px; font-weight:500;">Web Canvas</div>
-          <div style="font-size:11px; color:var(--text-muted);">127.0.0.1:18789 - Local dashboard</div>
+          <div style="font-size:12px; font-weight:500;">Claude in Chrome</div>
+          <div style="font-size:11px; color:var(--text-muted);">Browser automation &mdash; Pro included</div>
         </div>
-        <span style="font-size:10px; background:var(--badge-building-bg); color:var(--badge-building-text); padding:3px 10px; border-radius:20px; margin-left:8px;">Connected</span>
+        <span class="channel-badge-off">Available</span>
       </div>
     </div>
 
@@ -470,37 +459,46 @@
       <div class="verse-ref">Philippians 4:13</div>
       <a class="site-link" href="https://www.passionateforhispurpose.com" target="_blank">www.passionateforhispurpose.com</a>
     </div>
+
   </main>
 </div>
 
+<!-- Modal -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
-    <div class="modal-icon" id="modal-icon">&#9993;</div>
-    <div class="modal-title" id="modal-title">Send Command</div>
-    <div class="modal-desc">This will send a message to your OpenClaw Telegram bot to start this skill.</div>
-    <div class="modal-command" id="modal-command">/emailsequence</div>
+    <div class="modal-icon" id="modal-icon">&#129302;</div>
+    <div class="modal-title" id="modal-title">Open Workspace</div>
+    <div class="modal-desc">This will open Claude in a new tab for this workspace. Update the URL in the BOARDS array to point to a specific conversation.</div>
+    <div class="modal-command" id="modal-command">claude.ai/new</div>
     <div class="modal-actions">
-      <button class="modal-confirm" onclick="confirmSend()">Send to OpenClaw</button>
+      <button class="modal-confirm" onclick="confirmOpen()">Open in Claude</button>
       <button class="modal-cancel" onclick="closeModal()">Cancel</button>
     </div>
   </div>
 </div>
 
 <script>
+// ─── BOARDS ───────────────────────────────────────────────────────────────────
+// To link a board to a specific Claude conversation:
+// 1. Open that conversation in Claude
+// 2. Copy the URL from your browser (e.g. https://claude.ai/chat/abc123)
+// 3. Paste it as the url value below
+// 4. Commit and push to GitHub — Vercel redeploys automatically
+// ─────────────────────────────────────────────────────────────────────────────
 const BOARDS = [
-  { id:'ministry',  icon:'&#10013;', name:'Ministry Board',         desc:'Core ministry operations, outreach, and mission tracking.',       trigger:'/start',         status:'active'   },
-  { id:'email',     icon:'&#9993;',  name:'Email Sequences',         desc:'Nurture campaigns, follow-ups, and subscriber journeys.',         trigger:'/emailsequence', status:'active'   },
-  { id:'prodval',   icon:'&#128142;',name:'Product Validation',      desc:'Research, validate, and launch new ministry products.',           trigger:'/product',       status:'progress' },
-  { id:'course',    icon:'&#127891;',name:'Course Creator',          desc:'Design and build transformational ministry courses.',             trigger:'/course',        status:'building' },
-  { id:'legacy',    icon:'&#128640;',name:'Legacy Launcher',         desc:'Launch strategies to build lasting kingdom impact.',             trigger:'/salespage',     status:'planned'  },
-  { id:'book',      icon:'&#128214;',name:'Book Editor & Formatter', desc:'Write, edit, and format ministry books and publications.',       trigger:'/bookformat',    status:'planned'  },
-  { id:'podcast',   icon:'&#127908;',name:'Podcast',                 desc:'Plan, script, and manage ministry podcast episodes.',            trigger:'/podcast',       status:'planned'  },
-  { id:'stripe',    icon:'&#128179;',name:'Stripe Expert',           desc:'Manage payments, subscriptions, and revenue workflows.',         trigger:'/coupon',        status:'planned'  },
-  { id:'vsl',       icon:'&#127909;',name:'VSL Generation',          desc:'Create compelling video sales letter scripts and assets.',       trigger:'/vsl',           status:'planned'  },
-  { id:'prodcr',    icon:'&#128295;',name:'Product Creator',         desc:'Build and deliver digital products for your audience.',          trigger:'/product',       status:'planned'  },
-  { id:'blog',      icon:'&#128221;',name:'Blog Poster',             desc:'Draft, optimize, and publish ministry blog content.',            trigger:'/blogpost',      status:'planned'  },
-  { id:'helpdesk',  icon:'&#127911;',name:'Help Desk Support',       desc:'AI-powered support responses for ministry community.',           trigger:'/audioscribe',   status:'planned'  },
-  { id:'ecommerce', icon:'&#128722;',name:'eCommerce Expert',        desc:'Manage store, products, and online sales strategies.',          trigger:'/coupon',        status:'planned'  }
+  { id:'ministry',  icon:'&#10013;',  name:'Ministry Board',         desc:'Core ministry operations, outreach, and mission tracking.',       url:'https://claude.ai/new', status:'active'   },
+  { id:'email',     icon:'&#9993;',   name:'Email Sequences',         desc:'Nurture campaigns, follow-ups, and subscriber journeys.',         url:'https://claude.ai/new', status:'active'   },
+  { id:'deepwaters',icon:'&#127754;', name:'DeepWaters',              desc:'Spiritual app dev — pre-beta, 13 items remaining before launch.', url:'https://claude.ai/new', status:'progress' },
+  { id:'course',    icon:'&#127891;', name:'Course Creator',          desc:'Design and build transformational ministry courses.',             url:'https://claude.ai/new', status:'building' },
+  { id:'legacy',    icon:'&#128640;', name:'Legacy Launcher',         desc:'Launch strategies to build lasting kingdom impact.',             url:'https://claude.ai/new', status:'planned'  },
+  { id:'book',      icon:'&#128214;', name:'Book Editor & Formatter', desc:'Write, edit, and format ministry books and publications.',       url:'https://claude.ai/new', status:'planned'  },
+  { id:'podcast',   icon:'&#127908;', name:'Podcast',                 desc:'Plan, script, and manage ministry podcast episodes.',            url:'https://claude.ai/new', status:'planned'  },
+  { id:'stripe',    icon:'&#128179;', name:'Stripe Expert',           desc:'Manage payments, subscriptions, and revenue workflows.',         url:'https://claude.ai/new', status:'planned'  },
+  { id:'vsl',       icon:'&#127909;', name:'VSL Generation',          desc:'Create compelling video sales letter scripts and assets.',       url:'https://claude.ai/new', status:'planned'  },
+  { id:'prodcr',    icon:'&#128295;', name:'Product Creator',         desc:'Build and deliver digital products for your audience.',          url:'https://claude.ai/new', status:'planned'  },
+  { id:'blog',      icon:'&#128221;', name:'Blog Poster',             desc:'Draft, optimize, and publish ministry blog content.',            url:'https://claude.ai/new', status:'planned'  },
+  { id:'helpdesk',  icon:'&#127911;', name:'Help Desk Support',       desc:'AI-powered support responses for ministry community.',           url:'https://claude.ai/new', status:'planned'  },
+  { id:'ecommerce', icon:'&#128722;', name:'eCommerce Expert',        desc:'Manage store, products, and online sales strategies.',          url:'https://claude.ai/new', status:'planned'  }
 ];
 
 const BADGE_CLASS = { active:'badge-active', progress:'badge-progress', building:'badge-building', planned:'badge-planned' };
@@ -513,7 +511,17 @@ function renderBoards() {
   BOARDS.forEach(b => {
     const d = document.createElement('div');
     d.className = 'board-card'; d.id = 'card-' + b.id;
-    d.innerHTML = `<div class="board-top"><div class="board-icon-wrap">${b.icon}</div><span class="board-badge ${BADGE_CLASS[b.status]}">${BADGE_LABEL[b.status]}</span></div><div class="board-name">${b.name}</div><div class="board-desc">${b.desc}</div><div class="board-footer"><span class="board-trigger">${b.trigger}</span><span class="board-arrow">&#8594;</span></div>`;
+    d.innerHTML = `
+      <div class="board-top">
+        <div class="board-icon-wrap">${b.icon}</div>
+        <span class="board-badge ${BADGE_CLASS[b.status]}">${BADGE_LABEL[b.status]}</span>
+      </div>
+      <div class="board-name">${b.name}</div>
+      <div class="board-desc">${b.desc}</div>
+      <div class="board-footer">
+        <span class="board-trigger">claude.ai</span>
+        <span class="board-arrow">&#8594;</span>
+      </div>`;
     d.addEventListener('click', () => handleClick(b));
     g.appendChild(d);
   });
@@ -524,77 +532,44 @@ function handleClick(b) {
     pendingBoard = b;
     document.getElementById('modal-icon').innerHTML = b.icon;
     document.getElementById('modal-title').textContent = b.name;
-    document.getElementById('modal-command').textContent = b.trigger;
+    document.getElementById('modal-command').textContent = b.url;
     document.getElementById('modal-overlay').classList.add('open');
-  } else { sendCommand(b); }
-}
-
-function confirmSend() { var board = pendingBoard; closeModal(); if (board) sendCommand(board); }
-function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); pendingBoard = null; }
-
-async function sendCommand(b) {
-  const token = document.getElementById('bot-token').value.trim() || localStorage.getItem('oc_token') || '';
-  const chatId = document.getElementById('chat-id').value.trim() || localStorage.getItem('oc_chat') || '';
-  if (!token || !chatId) { log('No credentials set. Open Command Center to configure.', 'error'); toggleConfig(); return; }
-  const card = document.getElementById('card-' + b.id);
-  card.classList.add('firing');
-  log('Sending ' + b.trigger + ' to @markbopenclaw_bot...', 'warn');
-  try {
-    const r = await fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text: b.trigger })
-    });
-    const data = await r.json();
-    card.classList.remove('firing');
-    if (data.ok) {
-      card.classList.add('sent'); setTimeout(() => card.classList.remove('sent'), 3500);
-      log(b.trigger + ' sent. OpenClaw is now processing.', 'success');
-    } else {
-      card.classList.add('error-state'); setTimeout(() => card.classList.remove('error-state'), 4000);
-      log('Telegram error: ' + (data.description || 'Unknown'), 'error');
-    }
-  } catch (e) {
-    card.classList.remove('firing'); card.classList.add('error-state');
-    setTimeout(() => card.classList.remove('error-state'), 4000);
-    log('Network error: ' + e.message, 'error');
+  } else {
+    launchBoard(b);
   }
 }
 
-function triggerSkill(cmd) {
-  const b = BOARDS.find(x => x.trigger === '/' + cmd) || { id:cmd, icon:'&#9889;', name:cmd, desc:'', trigger:'/'+cmd };
-  handleClick(b);
+function confirmOpen() {
+  const board = pendingBoard;
+  closeModal();
+  if (board) launchBoard(board);
 }
 
-function saveConfig() {
-  const t = document.getElementById('bot-token').value.trim();
-  const c = document.getElementById('chat-id').value.trim();
-  if (t) localStorage.setItem('oc_token', t);
-  if (c) localStorage.setItem('oc_chat', c);
-  testGateway();
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  pendingBoard = null;
 }
 
-async function testGateway() {
-  const token = document.getElementById('bot-token').value.trim() || localStorage.getItem('oc_token') || '';
-  if (!token) { setStatus(false, 'Not configured'); return; }
-  try {
-    const r = await fetch('https://api.telegram.org/bot' + token + '/getMe');
-    const d = await r.json();
-    if (d.ok) { setStatus(true, '@' + d.result.username + ' online'); log('Gateway: @' + d.result.username + ' confirmed.', 'success'); }
-    else setStatus(false, 'Invalid token');
-  } catch { setStatus(false, 'Unreachable'); }
+function launchBoard(b) {
+  const card = document.getElementById('card-' + b.id);
+  card.classList.add('launching');
+  setTimeout(() => {
+    card.classList.remove('launching');
+    card.classList.add('sent');
+    setTimeout(() => card.classList.remove('sent'), 2500);
+  }, 600);
+  log('Opening ' + b.name + ' in Claude...', 'success');
+  window.open(b.url, '_blank');
 }
 
-function setStatus(ok, label) {
-  document.getElementById('status-dot').className = 'status-dot' + (ok ? '' : ' offline');
-  const t = document.getElementById('status-text');
-  t.className = 'status-text' + (ok ? '' : ' offline');
-  t.textContent = label;
+function openByName(id) {
+  const b = BOARDS.find(x => x.id === id);
+  if (b) handleClick(b);
 }
 
 function toggleConfig() {
   const s = document.getElementById('config-section');
   s.style.display = s.style.display === 'none' ? 'block' : 'none';
-  if (s.style.display === 'block') testGateway();
 }
 
 function log(msg, type) {
@@ -603,7 +578,8 @@ function log(msg, type) {
   const e = document.createElement('div');
   e.className = 'log-entry ' + (type || '');
   e.innerHTML = '<span class="log-time">' + t + '</span>' + msg;
-  b.appendChild(e); b.scrollTop = b.scrollHeight;
+  b.appendChild(e);
+  b.scrollTop = b.scrollHeight;
 }
 
 function clearLog() { document.getElementById('log-body').innerHTML = ''; }
@@ -615,32 +591,17 @@ function startClock() {
     const n = new Date();
     const h = n.getHours(), m = n.getMinutes(), s = n.getSeconds();
     const ap = h >= 12 ? 'PM' : 'AM';
-    document.getElementById('clock-time').textContent = String(h%12||12).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0') + ' ' + ap;
+    document.getElementById('clock-time').textContent = String(h % 12 || 12).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0') + ' ' + ap;
     document.getElementById('clock-date').textContent = DAYS[n.getDay()] + ', ' + MONTHS[n.getMonth()] + ' ' + n.getDate() + ', ' + n.getFullYear();
   }
   tick(); setInterval(tick, 1000);
 }
 
-function startCountdown() {
-  const target = new Date(); target.setMinutes(target.getMinutes() + 14, 0, 0);
-  function tick() {
-    const diff = Math.max(0, target - new Date());
-    const m = Math.floor(diff / 60000), s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('countdown').textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-  }
-  tick(); setInterval(tick, 1000);
-}
-
-document.getElementById('modal-overlay').addEventListener('click', function(e) { if (e.target===this) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
-
-const st = localStorage.getItem('oc_token'), sc = localStorage.getItem('oc_chat');
-document.getElementById('bot-token').value = st || '8719894697:AAESvRwJG4N779FkK3eC4eTmQ5APgz5XiF0';
-document.getElementById('chat-id').value = sc || '8708310158';
+document.getElementById('modal-overlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 renderBoards();
 startClock();
-startCountdown();
 </script>
 </body>
 </html>
